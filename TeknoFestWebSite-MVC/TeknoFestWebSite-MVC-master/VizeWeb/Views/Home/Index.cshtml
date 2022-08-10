@@ -1,0 +1,162 @@
+﻿@using VizeWeb.Controllers
+@using VizeWeb.DatabaseContext2
+@using VizeWeb.business
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 pl-0 pr-0">
+            <style>
+                .top-head-content-festival-alani {
+                    position: relative;
+                    margin: 40px 0px;
+                    padding: 0;
+                    width: 100%;
+                    height: 150px;
+                    overflow: hidden;
+                    z-index: 9;
+                    background-image: url("../img/search-bg.png");
+                    background-color: #00d9e4;
+                    background-size: cover;
+                }
+            </style>
+            <div class="top-head-content-festival-alani">
+                <div class="top-head">
+                    <div class="container">
+                        <h3>Helikopter Tasarım Yarışması</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 yarismalar-sol-menu-1">
+                    <!--Tab Menü Başlangıç-->
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="margin-left: 100px; text-align: center;">
+                        <a class="nav-link active" role="tab" aria-controls="v-pills-hakkinda">Yarışma Hakkında</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-Basvurular">Tüm Başvurular</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-TumUyeler">Tüm Üyelerimiz</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-TumTakimlar">Tüm Takımlarımız</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-TakimiOlmayanUyeler">Takımı Olmayan Üyelerimiz</a>
+                          <a class="nav-link" role="tab" aria-controls="v-pills-EnIyiTakimlar">En İyi Takımlarımız</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-sartname">Yarışma Şartnamesi</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-takvim">Yarışma Takvimi</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-rapor">Rapor Şablonları</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-oduller">Ödüller</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-galeri">Galeri</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-adres">Yarışma Yeri Ve Tarihi</a>
+
+                    </div>
+
+                    <!--Tab Menü Bitiş-->
+
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        @Html.Partial("PartialView\\TumUyeler", null)
+                        @Html.Partial("PartialView\\TumBasvurular", null)
+                        @Html.Partial("PartialView\\TumTakimlar", null)
+                        @Html.Partial("PartialView\\TakimiOlmayanUyeler", null)
+                        @Html.Partial("PartialView\\YarismaHakkinda", null)
+                        @Html.Partial("PartialView\\EnIyiTakimlar", null)
+
+                        @Html.Partial("PartialView\\Sartname", null)
+                        @Html.Partial("PartialView\\Takvim", null)
+                        @Html.Partial("PartialView\\TasarimSablon", null)
+                        @Html.Partial("PartialView\\Dokuman", null)
+                        @Html.Partial("PartialView\\Oduller", null)
+                        @Html.Partial("PartialView\\Galeri", null)
+                        @Html.Partial("PartialView\\Olanaklar", null)
+                        @Html.Partial("PartialView\\Raporlar", null)
+                        @Html.Partial("PartialView\\Yer", null)
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="announcement-content">
+                            <div class="announcement-head">
+                                <h3>Duyurular</h3>
+                                 <a href="@Url.ActionLink("Duyurular", "Home")"> <button type="button" class="btn btn-outline-primary">Tüm Duyurular İçin Tıklayın</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in new DatabaseContext().FiveAnnouncements())
+                        {
+                            @Html.Partial("PartialView\\Duyuru", item)
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="container-fluid footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li><a href="https://www.teknofest.org/index.html">Anasayfa</a></li>
+                            <li><a href="https://www.teknofest.org/duyurular.html">Duyurular</a></li>
+                            <li><a href="https://www.teknofest.org/yarismalar2.php">Yarışmalar</a></li>
+                            <li><a href="https://www.teknofest.org/sss.html">S.S.S.</a></li>
+                            <li><a href="https://www.teknofest.org/galeri.html">Galeri</a></li>
+                            <li><a href="https://www.teknofest.org/kvkk.html">KVKK Aydınlatma Metni</a></li>
+                            <li><a href="https://www.teknofest.org/iletisim.html">İletişim</a></li>
+                        </ul>
+                        <div class="social-footer">
+                            <div class="social-box" data-toggle="tooltip" data-placement="top" title="Bizi Twitter&#39;da Takip Et">
+                                <a href="https://twitter.com/teknofest" target="_blank">
+                                    <img src="~/originResources/twitter.svg" class="img-fluid" alt="Twitter">
+                                </a>
+                            </div>
+                            <div class="social-box" data-toggle="tooltip" data-placement="top" title="Bizi Instagram&#39;da Takip Et">
+                                <a href="https://www.instagram.com/teknofest/" target="_blank">
+                                    <img src="~/originResources/instagram.svg" alt="Instagram">
+                                </a>
+                            </div>
+                            <div class="social-box" data-toggle="tooltip" data-placement="top" title="Bizi Facebook&#39;da Takip Et">
+                                <a href="https://www.facebook.com/teknofestist/" target="_blank">
+                                    <img src="~/originResources/facebook.svg" alt="Facebook">
+                                </a>
+                            </div>
+                            <div class="social-box" data-toggle="tooltip" data-placement="top" title="Bizi Linkedin&#39;de Takip Et">
+                                <a href="https://www.linkedin.com/company/teknofest" target="_blank">
+                                    <img src="~/originResources/linkedin.svg" alt="Facebook">
+                                </a>
+                            </div>
+                            <div class="social-box" data-toggle="tooltip" data-placement="top" title="Bizi Youtube&#39;da Takip Et">
+                                <a href="http://www.youtube.com/c/TEKNOFEST2021" target="_blank">
+                                    <img src="~/originResources/youtube.svg" alt="Facebook">
+                                </a>
+
+                            </div>
+                            <div class="social-box" data-toggle="tooltip" data-placement="bottom" title="Bizi Telegram&#39;da Takip Et">
+                                <a href="https://t.me/TeknofestIstanbul" target="_blank">
+                                    <img src="~/originResources/telegram.svg" class="img-fluid" alt="Telegram">
+                                </a>
+                            </div>
+                        </div>
+                        <!--            <div class="right" style="-->
+                        <!--text-align: right;">  <a href="http://turkiyeteknolojitakimi.org/pdfler/T3Vakfi-KVKK-Aydinlatma-Metni.pdf" target="_blank" style="color:white;">T3 Vakfı KVKK</a></div>-->
+
+                        <div class="footer-copyright">
+                            <p>2021 TEKNOFEST Inc. All rights Reserved ©</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

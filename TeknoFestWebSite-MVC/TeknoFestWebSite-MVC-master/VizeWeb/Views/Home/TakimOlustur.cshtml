@@ -1,0 +1,70 @@
+﻿@using VizeWeb.DatabaseContext2
+@using VizeWeb.business
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string[] alanlar = { "Frontend", "Backend", "Sözcü", "Takım Lideri", "Tasarımcı" };
+}
+<div style="text-align:center">
+    <h3 id="h3">Takım Oluştur</h3>
+</div>
+<div style="margin-right:100px;">
+    <div style="margin-left: 100px;">
+            <div class="row">
+                <div class="col">
+
+                    <label style="font-weight:700;" for="validationCustom01" class="form-label">Takım Adınız: </label>
+                    <input name="Name" type="text" class="form-control" id="TakimName" placeholder="İsim" required>
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+            </div>
+         
+            @for (int i = 0; i < @Enum.GetNames(typeof(Alanlar)).Length; i++)
+            {
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <label style="font-weight:700;" for="exampleFormControlSelect1">@Enum.GetNames(typeof(Alanlar))[i] seçiniz</label>
+                        <select name="TakimUyeleri" class="form-control" id="uye_@i">
+                            @foreach (Uye item in new DatabaseContext().MembersWithoutTeamsByCategory((Alanlar)i))
+                            {
+                                <option>@item.UyeOkulNo - @item.UyeAdi - @item.UyeAlan</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+            <td>
+                <input style="margin-top: 50px;" id="takimolusturbtn" type="submit" name="buton" onclick="CreateTakim()" value="Takım Oluştur" class="btn btn-info mx-auto col">
+            </td>
+
+    </div>
+</div>
+<script>
+
+
+    function CreateTakim(){
+            var obj = new Object();
+            obj.Name = $("#TakimName").val();
+            obj.TakimUyeleri =  [
+                $("#uye_0").val(),
+                $("#uye_1").val(),
+                $("#uye_2").val(),
+                $("#uye_3").val(),
+                $("#uye_4").val()
+            ];
+         $.ajax({
+            type: "POST",
+            url: '/Home/AddTeam',
+            data: { Model: JSON.stringify(obj)},
+            dataType: "text",
+            success: function (msg) {
+                alert("Başarıyla kaydedildi: " + msg)
+            }
+        });
+    }
+</script>
+
+<script src="app.js"></script>
